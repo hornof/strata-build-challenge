@@ -57,11 +57,11 @@ Decisions already made (do not re-open): app state is JSON · no live URL in thi
 
 `eval/golden-set.jsonl` — labeled cases: the nine hand-labeled § 50.4 changes, the binds-another-party traps, adjacent-section traps, the RM22-7 correction (correct answer: silence/non-material), and unsure-labeled cases where escalation IS the right answer. `eval/harness.py` — grades correct / safe / wrong-with-confidence.
 
-- [ ] Harness exits non-zero on any wrong-with-confidence result (verified with a seeded failure)
-- [ ] False negatives (material→non-material) and false positives reported separately
-- [ ] A case used as a prompt example is excluded from scoring, and that exclusion is tested
-- [ ] `--live` run over the corpus with the real key → committed `recordings/`; judge v1 scored on the golden set; score report saved
-- [ ] Exact test command documented in README and green
+- [x] Harness exits non-zero on any wrong-with-confidence result (verified with a seeded failure)
+- [x] False negatives (material→non-material) and false positives reported separately
+- [x] A case used as a prompt example is excluded from scoring, and that exclusion is tested
+- [ ] `--live` run over the corpus with the real key → committed `recordings/`; judge v1 scored on the golden set; score report saved — **BLOCKED: the `.env` key returns 401 (invalid). Per the halt/fallback rule this moves to the morning; everything else is replay-ready.**
+- [x] Exact test command documented in README and green
 
 ## F6 — app
 
