@@ -1,6 +1,6 @@
 {
   "company": "Cascadia Grid Energy",
-  "description": "Mid-size electric utility. Interstate transmission developer and Open Access Transmission Tariff (OATT) filer under FERC jurisdiction. Company context the judge maps regulatory changes onto: obligations register, projects, and internal documents. Some obligations are deliberate traps — nothing in the demo corpus touches them; a change that maps to one of these is either non-material to us or a false positive to catch.",
+  "description": "Mid-size electric utility. Interstate transmission developer and Open Access Transmission Tariff (OATT) filer under FERC jurisdiction. This is the company context the judge maps regulatory changes onto: the obligations register, projects, and internal documents.",
   "obligations": [
     {
       "id": "O-004",
