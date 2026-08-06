@@ -60,7 +60,7 @@ Decisions already made (do not re-open): app state is JSON · no live URL in thi
 - [x] Harness exits non-zero on any wrong-with-confidence result (verified with a seeded failure)
 - [x] False negatives (material→non-material) and false positives reported separately
 - [x] A case used as a prompt example is excluded from scoring, and that exclusion is tested
-- [ ] `--live` run over the corpus with the real key → committed `recordings/`; judge v1 scored on the golden set; score report saved — **BLOCKED: the `.env` key returns 401 (invalid). Per the halt/fallback rule this moves to the morning; everything else is replay-ready.**
+- [x] `--live` run over the corpus with the real key → committed `recordings/`; judge v1 scored on the golden set; score report saved — v1: 10 correct · 1 safe · 1 wrong-with-confidence (the §380.16 unsure case judged material)
 - [x] Exact test command documented in README and green
 
 ## F6 — app
