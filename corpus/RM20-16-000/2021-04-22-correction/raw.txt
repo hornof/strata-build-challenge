@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>Federal Register, Volume 86 Issue 76 (Thursday, April 22, 2021)</title>
+</head>
+<body><pre>
+[Federal Register Volume 86, Number 76 (Thursday, April 22, 2021)]
+[Proposed Rules]
+[Page 21246]
+From the Federal Register Online via the Government Publishing Office [<a href="http://www.gpo.gov">www.gpo.gov</a>]
+[FR Doc No: 2021-08236]
+
+
+=======================================================================
+-----------------------------------------------------------------------
+
+DEPARTMENT OF ENERGY
+
+Federal Energy Regulatory Commission
+
+18 CFR Part 35
+
+[Docket No. RM20-16-000]
+
+
+Managing Transmission Line Ratings; Correction
+
+AGENCY: Federal Energy Regulatory Commission.
+
+ACTION: Notice of proposed rulemaking; correction.
+
+-----------------------------------------------------------------------
+
+SUMMARY: The Federal Energy Regulatory Commission published a notice of 
+proposed rulemaking in the Federal Register of January 21, 2021, 
+seeking comments on reforming both the pro forma Open Access 
+Transmission Tariff and the Commission's regulations under the Federal 
+Power Act to improve the accuracy and transparency of transmission line 
+ratings. As published in the Federal Register, the paragraph number for 
+paragraph 66 was incorrectly omitted and all paragraphs subsequent to 
+paragraph 66 were incorrectly numbered. This correction corrects the 
+paragraph numbers.
+
+DATES: The comments were due March 22, 2021.
+
+FOR FURTHER INFORMATION CONTACT: Ryan Stroschein, Office of the General 
+Counsel, Federal Energy Regulatory Commission, 888 First Street NE, 
+Washington, DC 20426. (202) 502-8099
+
+SUPPLEMENTARY INFORMATION: 
+
+Correction
+
+    In the Federal Register of January 21, 2021 at 86 FR 6420 in FR 
+Doc. 2020-26107, on page 6430, in the first column, correct the 
+paragraph that begins ``NRECA states that while it would support a 
+reasoned approach to implementing transmission line rating changes, it 
+does not support a Commission mandate to implement either AARs or DLRs 
+. . . .'' by inserting paragraph number 66 at the beginning of that 
+paragraph. Further, amend each paragraph number subsequent to corrected 
+paragraph number 66 in the notice of proposed rulemaking so as to 
+display them in an accurate numerical order.
+
+     Dated: April 15, 2021.
+Kimberly D. Bose,
+Secretary.
+[FR Doc. 2021-08236 Filed 4-21-21; 8:45 am]
+BILLING CODE 6717-01-P
+
+
+</pre></body>
+</html>

@@ -10,10 +10,10 @@ Decisions already made (do not re-open): app state is JSON · no live URL in thi
 
 `src/fetcher.py`. Downloads every version of RM22-7-000, RM22-10-000, RM20-16-000 from the Federal Register API into `corpus/<docket>/<date>-<kind>/` (`raw.txt` + `metadata.json`). Append-only: an existing version is never overwritten.
 
-- [ ] Kind detection tested: proposed / final / correction — including corrections marked only by a "; Correction" title suffix (the API's `correction_of` is null on RM20-16's)
-- [ ] Re-running the fetcher changes nothing (append-only test)
-- [ ] Corpus on disk: 8 documents, 2 of them corrections; every `raw.txt` non-empty
-- [ ] Downstream pipeline needs no network after this point
+- [x] Kind detection tested: proposed / final / correction — including corrections marked only by a "; Correction" title suffix (the API's `correction_of` is null on RM20-16's)
+- [x] Re-running the fetcher changes nothing (append-only test)
+- [x] Corpus on disk: 8 documents, 2 of them corrections; every `raw.txt` non-empty
+- [x] Downstream pipeline needs no network after this point
 
 ## F2 — parser
 
