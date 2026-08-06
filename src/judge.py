@@ -39,6 +39,11 @@ RECORDINGS = ROOT / "recordings"
 MODEL = "claude-opus-5"
 MAX_TOKENS = 1024
 
+# Bumped when the judgment layer changes (prompt, examples, model, refuter config).
+# v2 added the ambiguity-escalation rule below; nothing ships unless the harness
+# scores it better than the prior version with zero material->non-material errors.
+JUDGE_VERSION = "v2"
+
 MATERIALITY_RULES = (
     "A regulatory change is MATERIAL to this company if it alters what someone must "
     "do, by when, who is covered, or a threshold number: a new or removed obligation, "
@@ -46,7 +51,13 @@ MATERIALITY_RULES = (
     "one of this company's obligations, projects, or documents. It is NON-MATERIAL if "
     "it is rewording, renumbering, a cross-reference or typography fix, or if it binds "
     "a different party and none of this company's obligations. Answer UNSURE when the "
-    "evidence does not decide."
+    "evidence does not decide. Narrow ambiguity rule: if a change replaces a specific "
+    "numeric threshold or a clearly defined boundary with a vague or undefined term — "
+    "so the covered set could be larger, smaller, or unchanged and you cannot tell — "
+    "answer UNSURE rather than guessing material. This does NOT apply to cross-reference "
+    "or typography fixes, renumbering, or terminology swaps that leave the duty "
+    "unchanged: those remain NON-MATERIAL. A confident answer on a genuine toss-up is "
+    "the one hard failure; a clear typo fix answered confidently as non-material is not."
 )
 
 

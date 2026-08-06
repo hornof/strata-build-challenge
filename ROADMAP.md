@@ -67,10 +67,10 @@ Decisions already made (do not re-open): app state is JSON · no live URL in thi
 
 `src/app.py` — renders the three screens from dispositions + fixture, per `mockups/`: director weekly review (three piles, material as routed status lines, miss rate in footer, sign-the-week → coverage record), owner detail (passage diff, judgment, verified citations, accept / bounce / reassign), metrics. Bounces, rulings, overturns append to app state and the golden set.
 
-- [ ] Two-act demo runs: Act 1 (owner accepts one + bounces one; director rules an unsure, overturns one non-material, signs the week) · Act 2 (harness: judge v1 vs v2 after adding Act-1 cases; correction closer renders "seen, non-material: cross-reference typo")
-- [ ] Coverage record: every corpus change dispositioned, by whom, when, on what basis
-- [ ] Exact end-to-end run command documented in README and clean on a fresh clone
-- [ ] Screens match the mockups (screenshot review before human review)
+- [x] Two-act demo runs: Act 1 (owner accepts one + bounces one; director rules an unsure, overturns one non-material, signs the week) · Act 2 (harness: judge v1 vs v2 after adding Act-1 cases; correction closer renders "seen, non-material: cross-reference typo")
+- [x] Coverage record: every corpus change dispositioned, by whom, when, on what basis
+- [x] Exact end-to-end run command documented in README and clean on a fresh clone
+- [x] Screens match the mockups (screenshot review before human review)
 
 ---
 

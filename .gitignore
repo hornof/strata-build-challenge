@@ -8,3 +8,6 @@ __pycache__/
 sections.json
 changes.json
 dispositions.json
+
+# rendered app screens + demo outputs — regenerable with `python3 src/app.py`
+app/
