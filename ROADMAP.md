@@ -33,12 +33,12 @@ Decisions already made (do not re-open): app state is JSON · no live URL in thi
 
 `src/differ.py` → `changes.json` per docket: per-section records (added / removed / modified / unchanged, old text, new text, similarity), corrections applied as patches to their base version.
 
-- [ ] RM22-10 final: zero changed sections, and that renders as valid output, not an error (written before the code)
-- [ ] added/removed tested as mirror images; modified tested for old/new symmetry
-- [ ] Correction invariant: applying RM22-7's correction to its base and diffing yields near-zero regulatory-text change; the patch touches instruction text only
-- [ ] RM22-7 sanity against known ground truth: § 50.4, § 50.5, § 380.16 modified; § 50.2 unchanged; no sections added or removed
-- [ ] § 50.4's new text contains "Tribal Engagement Plan"; its old text does not
-- [ ] Similarity in [0,1] on every record; never used as a materiality gate anywhere
+- [x] RM22-10 final: zero changed sections, and that renders as valid output, not an error (written before the code)
+- [x] added/removed tested as mirror images; modified tested for old/new symmetry
+- [x] Correction invariant: applying RM22-7's correction to its base and diffing yields near-zero regulatory-text change; the patch touches instruction text only
+- [x] RM22-7 sanity against known ground truth: § 50.4, § 50.5, § 380.16 modified; § 50.2 unchanged; no sections added or removed
+- [x] § 50.4's new text contains "Tribal Engagement Plan"; its old text does not
+- [x] Similarity in [0,1] on every record; never used as a materiality gate anywhere
 
 ## F4 — fixture + judge
 
