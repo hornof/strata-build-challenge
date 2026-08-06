@@ -19,15 +19,15 @@ Decisions already made (do not re-open): app state is JSON · no live URL in thi
 
 `src/parser.py` → `sections.json` per version: sections split, regulatory text separated from amendatory instructions; corrections parse to a patch record, not sections. Regression tests written before the code:
 
-- [ ] § 50.9 contains no instruction text from § 50.11 (instruction-bleed bug)
-- [ ] § 380.12 is not a phantom section; its references survive inside § 380.13/380.14 instructions
-- [ ] An instruction spanning a GPO page break parses as one instruction (page-break bug)
-- [ ] RM20-16's correction resolves its base version (title/date inference; `correction_of` is null)
-- [ ] "[Amended]"-only sections: instructions populated, regulatory text empty
-- [ ] "* * * * *" elision markers preserved in regulatory text
-- [ ] Same section set across RM22-7's proposed and final (15 sections + authority entries)
-- [ ] Global guard: no section's regulatory text contains instruction language ("Amend Sec.", "add in its place", "as follows:")
-- [ ] Full suite green over all 8 documents
+- [x] § 50.9 contains no instruction text from § 50.11 (instruction-bleed bug)
+- [x] § 380.12 is not a phantom section; its references survive inside § 380.13/380.14 instructions
+- [x] An instruction spanning a GPO page break parses as one instruction (page-break bug)
+- [x] RM20-16's correction resolves its base version (title/date inference; `correction_of` is null)
+- [x] "[Amended]"-only sections: instructions populated, regulatory text empty
+- [x] "* * * * *" elision markers preserved in regulatory text
+- [x] Same section set across RM22-7's proposed and final (15 sections + authority entries)
+- [x] Global guard: no section's regulatory text contains instruction language ("Amend Sec.", "add in its place", "as follows:")
+- [x] Full suite green over all 8 documents
 
 ## F3 — differ
 

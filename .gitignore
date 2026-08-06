@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .DS_Store
 .env
+
+# derived pipeline artifacts — regenerable from the raw corpus, never source of truth
+sections.json
+changes.json
