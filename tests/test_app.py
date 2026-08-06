@@ -126,6 +126,7 @@ class HonestyCloser(unittest.TestCase):
         closer = app.correction_closer(week)
         self.assertIn("seen, non-material", closer.lower())
         self.assertIn("cross-reference", closer.lower())
+        self.assertIn("paragraph", closer.lower())   # the actual correction, not the terminology case
 
 
 if __name__ == "__main__":

@@ -49,3 +49,21 @@ To (re-)record against the real model — needs `anthropic` installed and
 ```bash
 python3 eval/harness.py --live      # calls the model, records to recordings/, then scores
 ```
+
+## The app and the demo
+
+Render the three screens (director weekly review, owner detail, metrics) to `app/`:
+
+```bash
+python3 src/app.py
+```
+
+Run the two-act demo — Act 1 (the week: accept, bounce, rule, overturn, sign the
+coverage record) and Act 2 (the eval: judge v1 vs v2, and the correction closer):
+
+```bash
+python3 src/app.py demo
+```
+
+Everything above runs on a fresh clone with only Python's standard library — the
+recorded judge responses replay deterministically, no API key or install needed.
