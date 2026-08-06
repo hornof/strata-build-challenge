@@ -39,7 +39,7 @@ Replay the recorded judge responses and score them against the golden set:
 python3 eval/harness.py
 ```
 
-This writes `eval/score-report.md` and exits non-zero if any change was judged
+This writes `eval/score-report-v2.md` and exits non-zero if any change was judged
 **wrong-with-confidence** (a definite answer that disagrees with the label). It needs
 the recordings produced by a `--live` run.
 
