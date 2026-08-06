@@ -6,8 +6,9 @@ This document records the architecture decided on August 5 and the reasoning beh
 each choice. A diagram without the reasoning tells you very little, so every decision
 below carries the alternatives considered and the trade-off taken. Nothing here is
 invented by the drafter: the decisions are the director's; this is where they are
-written down. Points that remain genuinely open are listed in
-[§14](#14-open-decisions) and raised for a decision, not resolved here.
+written down. Points that were genuinely open are listed in
+[§17](#17-open-decisions); the one product fork among them was put to Luke and ruled
+(director-as-backstop), recorded there.
 
 It is the companion to [PRD.md](PRD.md) and must not contradict it. Where the PRD says
 what the product is and who it is for, this says how it is built and how it fails
@@ -166,7 +167,7 @@ build (e.g. a query the JSON shape makes awkward).
 
 **Trade-off:** JSON has no transactions and no query engine. At this size (tens of
 changes per week, one user) neither is needed, and JSON keeps app state as
-human-readable as the corpus. This is a build-decides default, carried openly (§14).
+human-readable as the corpus. This is a build-decides default, carried openly (§17).
 
 ### 2.6 Route on detection; certify weekly
 
@@ -468,12 +469,16 @@ Maps to the brief's **reviewer routing** requirement. Route on detection (§2.6)
   checked against** ("touches no Cascadia obligation — checked against the register").
   Never routed, never deleted; batch-reviewed at the weekly sign-off.
 
-**Open fork raised, not decided (see [§14](#14-open-decisions), NEEDS-LUKE):** where does
-a **material change that maps to no existing obligation** route? This is precisely the
-PRD's "change nobody thought to look for," so it matters. It has no named owner by
-definition. A default is proposed in §14; it is flagged rather than silently chosen
-because it is a real product decision about who is accountable for catching an unowned
-material change.
+**Unowned material change → the director, as backstop (Luke's ruling, Aug 6).** A change
+judged **material that maps to no existing obligation** has no named owner by definition,
+yet it is precisely the PRD's "change nobody thought to look for" — the highest-value
+catch in the product. It routes to the **director** as owner-of-last-resort, on
+detection, tagged **"material · no mapped obligation — candidate new obligation,"** so it
+is caught immediately and can seed a new register entry (which then gets its own named
+owner). This was surfaced as a genuine fork rather than decided by the drafter; the
+alternative considered — a distinct fourth queue on the director's screen, separate from
+`unsure` — was set aside so the director's screen keeps one escalation pile, not two
+(see §17 for the ruling record).
 
 **Prototype → production.**
 - *Prototype:* routing is an **in-app** state transition — a material disposition writes
@@ -741,14 +746,14 @@ they aren't silent):
 - **Live URL + API key** — open, but replay-by-default makes it non-blocking; `--live`
   is opt-in (§2.2).
 
-One raised as **NEEDS-LUKE** (a genuine product fork, not the drafter's to decide),
-posted in the Cowork↔Code mailbox:
+One was raised as a genuine product fork (not the drafter's to decide) and **ruled by
+Luke on Aug 6**:
 
-- **N1 — routing an unowned material change.** A change judged material that maps to *no*
-  existing obligation has no named owner, yet it is exactly the "change nobody thought to
-  look for" the PRD is built around. *Proposed default (for confirmation):* route to the
-  **director** as owner-of-last-resort, flagged **"material · no mapped obligation —
-  candidate new obligation,"** so it is caught immediately and can seed a new register
-  entry. Alternative: hold it as a fourth queue on the director's screen distinct from
-  unsure. Flagged rather than chosen because it decides who is accountable for the
-  highest-value catch in the product.
+- **Routing an unowned material change — RESOLVED: director as backstop.** A change judged
+  material that maps to *no* existing obligation has no named owner, yet it is exactly the
+  "change nobody thought to look for" the PRD is built around. **Ruling:** route to the
+  **director** as owner-of-last-resort, on detection, tagged **"material · no mapped
+  obligation — candidate new obligation,"** so it is caught immediately and can seed a new
+  register entry. The alternative considered — a distinct fourth queue on the director's
+  screen, separate from `unsure` — was set aside to keep one escalation pile. Implemented
+  in §9. (Surfaced as Q7 in the Cowork↔Code mailbox; closed by this ruling.)
