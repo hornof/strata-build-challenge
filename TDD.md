@@ -13,6 +13,15 @@ It is the companion to [PRD.md](PRD.md) and must not contradict it. Where the PR
 what the product is and who it is for, this says how it is built and how it fails
 safely.
 
+**How every component section is structured.** Each component below (§3–§13) ends with a
+**Prototype → Production** block in three parts: (1) what the prototype builds — files on
+disk — and why that is sufficient at demo scale; (2) what production replaces it with; (3)
+the **concrete trigger** that forces the switch. This keeps the prototype honestly small
+without hand-waving the real system: the scaling path is named, and named with the event
+that sets it off. Data isolation (§12) and security (§13) are production sections by
+nature — the prototype builds none of it, so they are designed as production from the
+start.
+
 ---
 
 ## 0. Provenance and reuse
@@ -237,6 +246,18 @@ the corresponding code in the build (§12), so the parser/differ cannot silently
    not only a final one. Test: the correction is applied to the correct base version in
    the chain (§4.2), not assumed to patch a final rule.
 
+**Prototype → production.**
+- *Prototype:* fetcher writes `raw.txt` + `metadata.json` to the local filesystem; the
+  parser derives `sections.json` beside them. Sufficient at demo scale — a few dockets,
+  one fetch, reviewer-readable on GitHub.
+- *Production:* raw documents move to an **object store** (append-only, versioned,
+  content-addressed); the fetcher becomes a scheduled ingestion job per watched
+  proceeding; parsing is a worker keyed off new-object events.
+- *Switch trigger:* the first **live proceeding calendar** (the 12-week milestone —
+  scheduled re-fetch instead of a one-time pull), or the corpus outgrowing what a git
+  repo serves comfortably (hundreds of documents / reviewers can no longer read raw on
+  GitHub), whichever comes first.
+
 ---
 
 ## 4. Version diffing (differ)
@@ -280,6 +301,18 @@ importance" fallacy the product exists to refute.
 tested as such (a section present in v1 and absent in v2 is `removed`; the reverse is
 `added`); `modified` is tested for symmetry of the reported old/new text.
 
+**Prototype → production.**
+- *Prototype:* pure function over two `sections.json` files → `changes.json` on disk.
+  Deterministic, no service. Diffs **published amendatory text** (§3.3).
+- *Production:* the differ runs against **reconstructed CFR state** — amendments applied
+  to a maintained baseline — so "what does the regulation say now" is answerable across
+  hundreds of dockets (§14.2 item 1). The diff engine itself is unchanged; its *input*
+  becomes reconstructed state instead of raw amendatory text.
+- *Switch trigger:* the **second jurisdiction or the first dozens-of-dockets customer**,
+  where cross-referencing and referenced-not-amended cases (§ 380.12) make
+  amendatory-only diffing lossy. This is the single largest at-scale item and is called
+  out as such.
+
 ---
 
 ## 5. Evidence-linked extraction (judge output)
@@ -309,6 +342,17 @@ The whole obligations register is passed in every call because it is small (~13
 obligations). This is the concrete payoff of "no RAG" (§2.1): there is no retrieval
 step that could hand the judge the wrong context.
 
+**Prototype → production.**
+- *Prototype:* one model call per change record, response recorded to disk (§2.2). The
+  full register fits in one prompt. Sufficient at demo scale — tens of changes per week.
+- *Production:* the call becomes a **queued, retried job** with recorded responses in the
+  object store; when a register grows past what fits comfortably in one prompt, the "hand
+  it everything" input is replaced by an **indexed pre-filter** that narrows candidate
+  obligations before the judged call — the point at which retrieval (deliberately avoided
+  now, §2.1) earns its keep.
+- *Switch trigger:* a company register too large for a single prompt, **or** live-mode
+  volume where synchronous per-change calls no longer fit the weekly window.
+
 ---
 
 ## 6. Company-context data model (`company.json`)
@@ -333,6 +377,16 @@ exact company state it was made under (§8). The fixture shape is one of the thr
 vertical-specific seams the PRD names for expansion beyond utilities; keeping it a
 single declarative file keeps that seam thin.
 
+**Prototype → production.**
+- *Prototype:* a single hand-authored `company.json` fixture. Sufficient — one customer,
+  and the PRD explicitly scopes out live connectors.
+- *Production:* the register becomes **durable, per-tenant relational state** (Postgres),
+  populated by a **structured pull from customer systems** (SharePoint / GRC / Jira) —
+  the "beginning of the sync problem" the PRD dates to six months, taken on only after
+  the judgment layer has proven itself. Schema versioning becomes row-level history.
+- *Switch trigger:* the **first customer whose register must stay in sync with their
+  systems** rather than being loaded once — i.e. the fixture going stale is a real risk.
+
 ---
 
 ## 7. Citation verification
@@ -353,6 +407,17 @@ genuine quote survives normalization; an invented quote still fails after it).
 This is the single most important safeguard in the system: it converts the most common
 and most dangerous LLM failure (confident fabrication) from a silent trust-breaker into
 a mechanical escalation.
+
+**Prototype → production.**
+- *Prototype:* exact-substring match after normalization, in-process, against the
+  source text on disk. Sufficient and, importantly, **the same check regardless of
+  scale** — this safeguard does not weaken as volume grows.
+- *Production:* identical logic as a **library shared by the serving path and the eval
+  harness**, so citation rules can never drift between "how we judge live" and "how we
+  score." Verification runs before a disposition is persisted.
+- *Switch trigger:* none for the *logic* — it is deliberately scale-invariant. Only its
+  *packaging* (shared library, called from the queue worker) changes, at the same point
+  routing becomes a queue (§9).
 
 ---
 
@@ -378,6 +443,15 @@ by making the judge better on the golden set, never by loosening the escalation 
 Escalation rate is therefore a watched band, not a target (PRD): near-zero means
 overconfidence, too high means the judge is punting. The metrics screen tracks it.
 
+**Prototype → production.**
+- *Prototype:* citation check + refuter run inline per change; the escalation bar is a
+  prompt/config value. Sufficient at demo scale.
+- *Production:* the same two gates run in the **queue worker**; the escalation bar is a
+  **harness-tuned, version-pinned parameter** (§2.4, §11) rather than an edited constant,
+  so any change to it is score-gated before it ships.
+- *Switch trigger:* the escalation bar becoming something operators want to tune against
+  live data — at which point it must go through the harness gate, not a config edit.
+
 ---
 
 ## 9. Reviewer routing
@@ -400,6 +474,17 @@ PRD's "change nobody thought to look for," so it matters. It has no named owner 
 definition. A default is proposed in §14; it is flagged rather than silently chosen
 because it is a real product decision about who is accountable for catching an unowned
 material change.
+
+**Prototype → production.**
+- *Prototype:* routing is an **in-app** state transition — a material disposition writes
+  the owner, deadline, and status into JSON app state; the owner and director screens read
+  it. No external delivery. Sufficient — one org, no writeback (PRD scopes it out).
+- *Production:* routing becomes a **durable queue** with retries and delivery to external
+  systems (Jira / ServiceNow writeback), surviving process restarts, with acknowledgement
+  and escalation-on-timeout.
+- *Switch trigger:* the **first integration writeback** (routing must reach a system
+  outside the app), or routing that must survive a restart / be retried — the point at
+  which "write it into a JSON file" stops being a safe delivery guarantee.
 
 ---
 
@@ -424,6 +509,18 @@ asked about in an audit is append-only and reproducible:
   responses. Because responses are versioned and the golden set is the gate (§11), a bad
   judge version is revertible to a known-good one with its scores intact. Git history of
   prompt/config is the backing store for this.
+
+**Prototype → production.**
+- *Prototype:* dispositions, coverage records, and overturns are **append-only JSON on
+  disk**; judge/prompt/config history is **git**. Human-readable, auditable directly.
+  Sufficient at one-user, tens-of-changes-per-week scale.
+- *Production:* audit and disposition state move to **Postgres** — durable,
+  transactional, append-only by constraint, queryable for examiner-facing reports — while
+  recorded model responses live in the object store (§3). Rollback of a judge version
+  stays a re-pin; the backing store is a release registry, not bare git.
+- *Switch trigger:* the **first concurrent writer** (a director and owners acting at once)
+  or the first customer needing durable, queryable audit for a regulator — where a JSON
+  file's lack of transactions becomes a correctness risk, not just an inconvenience.
 
 ---
 
@@ -455,6 +552,16 @@ harness (a case present in the prompt is excluded from scoring) and is itself te
 The eval runs **offline, between judge versions — never during a live run.** The trust
 loop and the serving path do not touch.
 
+**Prototype → production.**
+- *Prototype:* one golden set as labeled cases on disk; the harness is a script run
+  between versions. Sufficient — one customer, one judge lineage.
+- *Production:* **per-tenant golden sets** in the store (materiality is company-specific,
+  §12), the harness wired into CI as the **release gate** for any judge change, with
+  recorded-response fixtures pulled from the object store.
+- *Switch trigger:* the **second customer** (per-tenant golden sets required — one
+  customer's labels must never grade another's judge, §12), or judge changes shipping
+  often enough that the gate must be automated in CI rather than run by hand.
+
 ---
 
 ## 12. Data isolation
@@ -484,6 +591,12 @@ entire value is a trust boundary. Per-tenant roots trade some efficiency for a b
 that is structural, not enforced by remembering a `WHERE` clause. That efficiency cost is
 an at-scale (§11-scale) concern, not a prototype one.
 
+**This is a production section by nature — the prototype builds none of it.** The
+prototype is single-tenant local files (nothing to isolate); the design above *is* the
+production design. *Switch trigger:* the **second customer** — the moment a second
+tenant's data exists, the per-tenant root boundary and authenticated access to it are
+built before that data lands, not after.
+
 ---
 
 ## 13. Security
@@ -512,6 +625,16 @@ Maps to the brief's **security** requirement.
 - **Prototype scope, stated:** no auth, no multi-tenancy (§12) — designed, not built.
   When built, the trust boundary is per-customer and authentication gates every data
   root.
+
+**This is a production section by nature — the prototype builds none of it.** The
+prototype runs as a single-user local demo with no login and one org's data, so it has no
+authentication surface to secure. The design above is the production design. *Switch
+trigger:* the **first deployment beyond the single-user local demo** — any hosted or
+multi-user instance — at which point authentication, per-tenant access control (§12), and
+secret management for `--live` are built before it is exposed. The two structural
+defenses that *do* exist in the prototype — strict-JSON output and the code-level citation
+check as a prompt-injection blunt (above) — are scale-invariant and stay identical in
+production.
 
 ---
 
