@@ -310,7 +310,7 @@ def demo():
 
     print("\n== ACT 2 — improvement, shown by the eval ==")
     v1 = (ROOT / "eval" / "score-report-v1.md").read_text()
-    v2 = (ROOT / "eval" / "score-report.md").read_text()
+    v2 = (ROOT / "eval" / "score-report-v2.md").read_text()
     print("judge v1:", _grade_line(v1))
     print("judge v2:", _grade_line(v2), "(after Act-1 cases + the narrow ambiguity rule)")
     print("closer —", correction_closer(week))

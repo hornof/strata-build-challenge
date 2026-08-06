@@ -30,7 +30,7 @@ sys.path.insert(0, str(ROOT / "src"))
 import judge  # noqa: E402
 
 GOLDEN = ROOT / "eval" / "golden-set.jsonl"
-REPORT = ROOT / "eval" / "score-report.md"
+REPORT = ROOT / "eval" / "score-report-v2.md"
 RECORDINGS = ROOT / "recordings"
 
 
