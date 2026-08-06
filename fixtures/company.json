@@ -1,0 +1,150 @@
+{
+  "company": "Cascadia Grid Energy",
+  "description": "Mid-size electric utility. Interstate transmission developer and Open Access Transmission Tariff (OATT) filer under FERC jurisdiction. Company context the judge maps regulatory changes onto: obligations register, projects, and internal documents. Some obligations are deliberate traps — nothing in the demo corpus touches them; a change that maps to one of these is either non-material to us or a false positive to catch.",
+  "obligations": [
+    {
+      "id": "O-004",
+      "title": "Applicant Code of Conduct",
+      "description": "Maintain and follow the Applicant Code of Conduct governing communications between transmission applicants and affected landowners during pre-filing and siting.",
+      "regulatory_basis": "18 CFR 50.12",
+      "owner": "M. Osei",
+      "owner_role": "Compliance Counsel",
+      "projects": ["Cascade Crossing", "Basin Interconnect", "Coastal Uprate"]
+    },
+    {
+      "id": "O-005",
+      "title": "Pre-filing environmental report (Exhibit H)",
+      "description": "Prepare and file the Exhibit H system analysis data and environmental report contents required for a transmission siting application.",
+      "regulatory_basis": "18 CFR 50.7, 18 CFR 380.16",
+      "owner": "P. Nakamura",
+      "owner_role": "Environmental Lead",
+      "projects": ["Cascade Crossing"]
+    },
+    {
+      "id": "O-012",
+      "title": "Pre-filing consultation and stakeholder outreach",
+      "description": "Conduct and document pre-filing consultation, including the stakeholder participation plan and outreach to affected parties before commencing the formal filing.",
+      "regulatory_basis": "18 CFR 50.5",
+      "owner": "R. Alvarez",
+      "owner_role": "Siting Manager",
+      "projects": ["Cascade Crossing"]
+    },
+    {
+      "id": "O-013",
+      "title": "Transmission siting compliance",
+      "description": "Meet the filing obligations for interstate electric transmission facilities, including stakeholder participation plan contents and any tribal engagement requirements, for siting proceedings.",
+      "regulatory_basis": "18 CFR 50.4",
+      "owner": "Dana Kim",
+      "owner_role": "Permitting Lead",
+      "projects": ["Cascade Crossing"]
+    },
+    {
+      "id": "O-002",
+      "title": "Transmission line ratings (ambient-adjusted ratings)",
+      "description": "Implement and maintain ambient-adjusted transmission line ratings in the Open Access Transmission Tariff as required for transmission service.",
+      "regulatory_basis": "18 CFR 35.28",
+      "owner": "L. Fontaine",
+      "owner_role": "Transmission Tariff Manager",
+      "projects": ["Basin Interconnect"]
+    },
+    {
+      "id": "O-007",
+      "title": "Wholesale rate (OATT) filings",
+      "description": "File and maintain the wholesale Open Access Transmission Tariff and associated rate schedules.",
+      "regulatory_basis": "18 CFR Part 35",
+      "owner": "L. Fontaine",
+      "owner_role": "Transmission Tariff Manager",
+      "projects": ["Basin Interconnect", "Coastal Uprate"]
+    },
+    {
+      "id": "O-001",
+      "title": "NERC CIP cybersecurity incident reporting",
+      "description": "Report cybersecurity incidents affecting bulk electric system cyber assets under the mandatory reliability standards.",
+      "regulatory_basis": "18 CFR Part 40",
+      "owner": "J. Present",
+      "owner_role": "CIP Compliance Officer",
+      "projects": []
+    },
+    {
+      "id": "O-003",
+      "title": "Standards of conduct (transmission/marketing separation)",
+      "description": "Maintain functional separation between transmission and marketing functions under the Standards of Conduct.",
+      "regulatory_basis": "18 CFR Part 358",
+      "owner": "M. Osei",
+      "owner_role": "Compliance Counsel",
+      "projects": []
+    },
+    {
+      "id": "O-006",
+      "title": "Qualifying facility self-certification",
+      "description": "Maintain qualifying facility (QF) status self-certifications for company-affiliated small power production facilities.",
+      "regulatory_basis": "18 CFR Part 292",
+      "owner": "S. Okafor",
+      "owner_role": "Regulatory Analyst",
+      "projects": []
+    },
+    {
+      "id": "O-008",
+      "title": "Merger and acquisition authorization",
+      "description": "Obtain Section 203 authorization for dispositions of jurisdictional facilities and changes in control.",
+      "regulatory_basis": "18 CFR Part 33",
+      "owner": "M. Osei",
+      "owner_role": "Compliance Counsel",
+      "projects": []
+    },
+    {
+      "id": "O-009",
+      "title": "Interlocking directorate reporting",
+      "description": "File interlocking directorate authorizations for officers and directors holding positions across jurisdictional entities.",
+      "regulatory_basis": "18 CFR Part 45",
+      "owner": "S. Okafor",
+      "owner_role": "Regulatory Analyst",
+      "projects": []
+    },
+    {
+      "id": "O-010",
+      "title": "EQR (Electric Quarterly Report) filing",
+      "description": "File the Electric Quarterly Report of wholesale power and transmission transactions.",
+      "regulatory_basis": "18 CFR 35.10b",
+      "owner": "L. Fontaine",
+      "owner_role": "Transmission Tariff Manager",
+      "projects": []
+    },
+    {
+      "id": "O-011",
+      "title": "FERC Form 1 annual report",
+      "description": "File the FERC Form 1 annual report of major electric utilities.",
+      "regulatory_basis": "18 CFR Part 141",
+      "owner": "S. Okafor",
+      "owner_role": "Regulatory Analyst",
+      "projects": []
+    }
+  ],
+  "projects": [
+    {
+      "name": "Cascade Crossing",
+      "description": "Interstate transmission line siting proceeding; in pre-filing.",
+      "obligations": ["O-004", "O-005", "O-012", "O-013"]
+    },
+    {
+      "name": "Basin Interconnect",
+      "description": "Generator interconnection and OATT service.",
+      "obligations": ["O-002", "O-007"]
+    },
+    {
+      "name": "Coastal Uprate",
+      "description": "Existing transmission line uprate under OATT.",
+      "obligations": ["O-004", "O-007"]
+    }
+  ],
+  "documents": [
+    {
+      "id": "Siting Playbook §3",
+      "about": "Internal pre-filing checklist for transmission siting: stakeholder outreach, tribal engagement, Exhibit H preparation."
+    },
+    {
+      "id": "OATT Compliance Binder",
+      "about": "Internal record of Open Access Transmission Tariff provisions, including transmission line rating methodology."
+    }
+  ]
+}

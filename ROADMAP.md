@@ -46,12 +46,12 @@ Decisions already made (do not re-open): app state is JSON · no live URL in thi
 
 `src/judge.py` — builds the prompt (materiality rules + change record + whole fixture), calls the model, parses strict JSON, runs the safeguards, writes dispositions.
 
-- [ ] Strict-JSON parse: malformed model output → unsure, never a crash
-- [ ] Citation check (code): an invented quote is rejected; a real quote passes after normalization (both directions tested)
-- [ ] Refuter: second call argues the opposite; a credible refutation flips the change to unsure (exercised via a test recording)
-- [ ] Record/replay wrapper: request-hash → `recordings/<hash>.json`; replay is deterministic (two runs, identical output); replay-mode miss = clear error naming the `--live` fix
-- [ ] Pipeline runs end-to-end in replay mode with no API key
-- [ ] Test recordings are synthetic and labeled as such; real recordings come from the `--live` run (F5, needs the API key)
+- [x] Strict-JSON parse: malformed model output → unsure, never a crash
+- [x] Citation check (code): an invented quote is rejected; a real quote passes after normalization (both directions tested)
+- [x] Refuter: second call argues the opposite; a credible refutation flips the change to unsure (exercised via a test recording)
+- [x] Record/replay wrapper: request-hash → `recordings/<hash>.json`; replay is deterministic (two runs, identical output); replay-mode miss = clear error naming the `--live` fix
+- [x] Pipeline runs end-to-end in replay mode with no API key
+- [x] Test recordings are synthetic and labeled as such; real recordings come from the `--live` run (F5, needs the API key)
 
 ## F5 — golden set + harness
 
