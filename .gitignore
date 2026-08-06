@@ -7,3 +7,4 @@ __pycache__/
 # derived pipeline artifacts — regenerable from the raw corpus, never source of truth
 sections.json
 changes.json
+dispositions.json
